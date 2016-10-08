@@ -1,3 +1,5 @@
+This is copy-pasta from https://github.com/zalky
+
 # this is a Clojure-friendly emacs config
 
 If you're new to emacs, check out

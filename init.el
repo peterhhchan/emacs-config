@@ -15,10 +15,6 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
-;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
-;;                          ("melpa" . "http://melpa-stable.milkbox.net/packages/")))
-
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
@@ -73,7 +69,13 @@
     tagedit
 
     ;; git integration
-    magit))
+    magit
+
+    ;;
+    ;; Python stuff
+    ;;
+    elpy ;; add the elpy package
+))
 
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
@@ -99,7 +101,7 @@
 ;;
 ;; (require 'yaml-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-;; 
+;;
 ;; Adding this code will make Emacs enter yaml mode whenever you open
 ;; a .yml file
 (add-to-list 'load-path "~/.emacs.d/vendor")
@@ -145,6 +147,32 @@
 (load "whitespace.el")
 ;(add-hook 'clojure-mode-hook #'whitespace-mode)
 
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; (add-hook 'clojure-mode-hook (lambda ()
+;;                                (clj-refactor-mode 1)
+;;                                ;; insert keybinding setup here
+;;                                ))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(package-selected-packages
+   (quote
+    (elpy multiple-cursors clj-refactor magit tagedit rainbow-delimiters projectile smex ido-ubiquitous helm cider clojure-mode-extra-font-locking clojure-mode paredit))))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum ((t (:foreground "olive drab")))))
 
 
-
+;; tramp config
+(setq tramp-default-method "ssh")
+(put 'erase-buffer 'disabled nil)
+(put 'downcase-region 'disabled nil)

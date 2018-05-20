@@ -17,6 +17,7 @@
 ;; syntax hilighting for midje
 (add-hook 'clojure-mode-hook
           (lambda ()
+            (clj-refactor-mode 1)
             (setq inferior-lisp-program "lein repl")
             (font-lock-add-keywords
              nil
@@ -27,6 +28,8 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))))
 
+
+(setq font-lock-maximum-size 1000)
 ;;;;
 ;; Cider
 ;;;;

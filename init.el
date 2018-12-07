@@ -4,17 +4,22 @@
 
 ;; Define package repositories
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (add-to-list 'package-archives
              '("tromey" . "http://tromey.com/elpa/") t)
-;;(add-to-list 'package-archives
-;;             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;(add-to-list 'package-archives
-;;             '("melpa" . "https://melpa.org/packages/"))
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
+(setq package-archives
+      '(("MELPA Stable" . "https://stable.melpa.org/packages/")
+        ("MELPA"        . "https://melpa.org/packages/"))
+      package-archive-priorities
+      '(("MELPA Stable" . 10)
+        ("MELPA"        . 0)))
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
@@ -52,7 +57,7 @@
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
-    ido-ubiquitous
+    ido-completing-read+
 
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
@@ -106,6 +111,11 @@
 ;; a .yml file
 (add-to-list 'load-path "~/.emacs.d/vendor")
 
+;;(require 'helm-config)
+(global-company-mode)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;;;;
 ;; Customization
@@ -145,14 +155,8 @@
 
 ;; Whitespace
 (load "whitespace.el")
-;(add-hook 'clojure-mode-hook #'whitespace-mode)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; (add-hook 'clojure-mode-hook (lambda ()
-;;                                (clj-refactor-mode 1)
-;;                                ;; insert keybinding setup here
-;;                                ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -162,7 +166,7 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (elpy multiple-cursors clj-refactor magit tagedit rainbow-delimiters projectile smex ido-ubiquitous helm cider clojure-mode-extra-font-locking clojure-mode paredit))))
+    (clj-refactor exec-path-from-shell elpy multiple-cursors magit tagedit rainbow-delimiters projectile smex helm clojure-mode-extra-font-locking clojure-mode paredit))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

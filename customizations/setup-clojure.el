@@ -9,15 +9,30 @@
 ;; Java classes (e.g. JavaClassName)
 (add-hook 'clojure-mode-hook 'subword-mode)
 
-(add-hook 'clojure-mode-hook 'whitespace-mode)
+;;(add-hook 'clojure-mode-hook 'whitespace-mode)
+
+(add-hook 'clojure-mode-hook 'company-mode-on)
+
+(setq company-idle-delay nil) ; never start completions automatically
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common) ; use M-TAB, a.k.a. C-M-i, as manual trigger
+
 
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
-;; syntax hilighting for midje
+(require 'clj-refactor)
+
 (add-hook 'clojure-mode-hook
           (lambda ()
             (clj-refactor-mode 1)
+            (yas-minor-mode 1) ; for adding require/use/import statements
+            ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+            (cljr-add-keybindings-with-prefix "C-c C-m")))
+
+
+;; syntax hilighting for midje
+(add-hook 'clojure-mode-hook
+          (lambda ()
             (setq inferior-lisp-program "lein repl")
             (font-lock-add-keywords
              nil
@@ -58,7 +73,7 @@
 ;; Use clojure mode for other extensions
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
+;;(add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
 
 

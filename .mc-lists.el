@@ -4,11 +4,13 @@
 (setq mc/cmds-to-run-for-all
       '(
         paredit-doublequote
+        paredit-forward-delete
         paredit-forward-slurp-sexp
         paredit-open-curly
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        mouse-set-region
         smex
         ))

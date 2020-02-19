@@ -9,8 +9,6 @@
 ;; Java classes (e.g. JavaClassName)
 (add-hook 'clojure-mode-hook 'subword-mode)
 
-;;(add-hook 'clojure-mode-hook 'whitespace-mode)
-
 (add-hook 'clojure-mode-hook 'company-mode-on)
 
 (setq company-idle-delay nil) ; never start completions automatically
@@ -68,7 +66,6 @@
 ;; enable paredit in your REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
-;(add-hook 'cider-repl-mode-hook 'whitespace-mode)
 
 ;; Use clojure mode for other extensions
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))

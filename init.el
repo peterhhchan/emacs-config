@@ -5,21 +5,14 @@
 ;; Define package repositories
 (require 'package)
 
-(add-to-list 'package-archives
-             '("tromey" . "http://tromey.com/elpa/") t)
-
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/"))
-
 (setq package-archives
       '(("MELPA Stable" . "https://stable.melpa.org/packages/")
-        ("MELPA"        . "https://melpa.org/packages/"))
+        ("MELPA"        . "https://melpa.org/packages/")
+        ("tromey"       . "http://tromey.com/elpa"))
       package-archive-priorities
       '(("MELPA Stable" . 10)
-        ("MELPA"        . 0)))
+        ("MELPA"        . 0)
+        ("tromey"       . 0)))
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
@@ -53,6 +46,7 @@
 
     ;;
     helm
+    helm-projectile
 
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
@@ -98,22 +92,6 @@
     (package-install p)))
 
 
-;; Place downloaded elisp files in ~/.emacs.d/vendor. You'll then be able
-;; to load them.
-;;
-;; For example, if you download yaml-mode.el to ~/.emacs.d/vendor,
-;; then you can add the following code to this file:
-;;
-;; (require 'yaml-mode)
-;; (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-;;
-;; Adding this code will make Emacs enter yaml mode whenever you open
-;; a .yml file
-(add-to-list 'load-path "~/.emacs.d/vendor")
-
-;;(require 'helm-config)
-(global-company-mode)
-
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
@@ -149,6 +127,7 @@
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
+(load "setup-python.el")
 
 ;; Key bindings
 (load "key-bindings.el")
@@ -166,7 +145,7 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (clj-refactor exec-path-from-shell elpy multiple-cursors magit tagedit rainbow-delimiters projectile smex helm clojure-mode-extra-font-locking clojure-mode paredit))))
+    (py-autopep8 flycheck clj-refactor exec-path-from-shell elpy multiple-cursors magit tagedit rainbow-delimiters projectile smex helm clojure-mode-extra-font-locking clojure-mode paredit))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -180,3 +159,7 @@
 (setq tramp-default-method "ssh")
 (put 'erase-buffer 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+
+(require 'helm-config)
+;;(global-company-mode)

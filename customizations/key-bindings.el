@@ -1,6 +1,8 @@
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-<f3>"))
+(global-unset-key (kbd "C-S-y"))
+
 
 ;; Hmm Do I need this one?
 (global-set-key (kbd "C-`") 'kill-emacs)
@@ -12,7 +14,7 @@
 
 (global-set-key (kbd "<C-iso-lefttab>") 'clojure-align)
 
-(global-set-key (kbd "C-S-y") 'yank-pop)
+(global-set-key (kbd "C-S-y") 'helm-show-kill-ring)
 ;;(global-set-key (kbd "C-)") 'paredit-forward-slurp-sexp)
 ;;(global-set-key (kbd "C-(") 'paredit-backward-slurp-sexp)
 

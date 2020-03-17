@@ -1,5 +1,6 @@
 *~$
 .init.el.swp
+.mc-lists.el
 .recentf
 .smex-items
 auto-save-list
@@ -14,3 +15,4 @@ projectile.cache
 tramp
 
 elpa/*
+cider-0.16.0/*

@@ -67,3 +67,8 @@
 
 ;; no bell
 (setq ring-bell-function 'ignore)
+
+;; https://github.com/rolandwalker/unicode-fonts/issues/16
+(require 'persistent-soft)
+(setq inhibit-compacting-font-caches t)
+(unicode-fonts-setup)

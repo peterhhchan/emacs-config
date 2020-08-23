@@ -18,8 +18,6 @@
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
-(require 'clj-refactor)
-
 (add-hook 'clojure-mode-hook
           (lambda ()
             (clj-refactor-mode 1)
@@ -100,4 +98,6 @@
      (define-key clojure-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)))
 
-(require 'helm-config)
+;;(require 'helm-config)
+
+;;(require 'clj-refactor)

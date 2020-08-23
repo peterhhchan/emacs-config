@@ -16,3 +16,5 @@ tramp
 
 elpa/*
 cider-0.16.0/*
+straight/*
+var/*

@@ -2,32 +2,20 @@
 ;; Packages
 ;;;;
 
-;; Define package repositories
-(require 'package)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(setq package-archives
-      '(("MELPA Stable" . "https://stable.melpa.org/packages/")
-        ("MELPA"        . "https://melpa.org/packages/")
-        ("tromey"       . "http://tromey.com/elpa"))
-      package-archive-priorities
-      '(("MELPA Stable" . 10)
-        ("MELPA"        . 0)
-        ("tromey"       . 0)))
 
-;; Load and activate emacs packages. Do this first so that the
-;; packages are loaded before you start trying to modify them.
-;; This also sets the load path.
-(package-initialize)
-
-;; Download the ELPA archive description if needed.
-;; This informs Emacs about the latest versions of all packages, and
-;; makes them available for download.
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-;; The packages you want installed. You can also install these
-;; manually with M-x package-install
-;; Add in your own as you wish:
 (defvar my-packages
   '(;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
@@ -40,6 +28,8 @@
     ;; extra syntax highlighting for clojure
     clojure-mode-extra-font-locking
 
+    clj-refactor
+
     ;; integration with a Clojure REPL
     ;; https://github.com/clojure-emacs/cider
     cider
@@ -47,6 +37,8 @@
     ;;
     helm
     helm-projectile
+
+    exec-path-from-shell
 
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
@@ -61,11 +53,14 @@
     ;; project navigation
     projectile
 
+
     ;; colorful parenthesis matching
     rainbow-delimiters
 
     ;; edit html tags like sexps
     tagedit
+
+    unicode-fonts
 
     ;; git integration
     magit
@@ -74,23 +69,11 @@
     ;; Python stuff
     ;;
     elpy ;; add the elpy package
+
 ))
 
-;; On OS X, an Emacs instance started from the graphical user
-;; interface will have a different environment than a shell in a
-;; terminal window, because OS X does not run a shell during the
-;; login. Obviously this will lead to unexpected results when
-;; calling external utilities like make from Emacs.
-;; This library works around this problem by copying important
-;; environment variables from the user's shell.
-;; https://github.com/purcell/exec-path-from-shell
-(if (eq system-type 'darwin)
-    (add-to-list 'my-packages 'exec-path-from-shell))
-
 (dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
-
+  (straight-use-package p))
 
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))

@@ -1,4 +1,11 @@
-This is copy-pasta from https://github.com/zalky
+# intro #
+
+A setup for Clojure and some very basic Python work. I recently added 
+`straight.el` to help manage my packages.
+
+
+The following section is copy-pasta from 
+https://github.com/flyingmachine/emacs-for-clojure
 
 # this is a Clojure-friendly emacs config
 

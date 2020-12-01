@@ -78,6 +78,7 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+
 ;;;;
 ;; Customization
 ;;;;
@@ -85,6 +86,7 @@
 ;; Add a directory to our load path so that when you `load` things
 ;; below, Emacs knows where to look for the corresponding file.
 (add-to-list 'load-path "~/.emacs.d/customizations")
+(add-to-list 'load-path "~/.emacs.d/customizations/private")
 
 ;; Sets up exec-path-from-shell so that Emacs will use the correct
 ;; environment variables
@@ -118,6 +120,9 @@
 ;; Whitespace
 (load "whitespace.el")
 
+(load "setup-tramp.el")
+
+
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 (custom-set-variables
@@ -136,13 +141,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(linum ((t (:foreground "olive drab")))))
-
-
-;; tramp config
-(setq tramp-default-method "ssh")
-(put 'erase-buffer 'disabled nil)
-(put 'downcase-region 'disabled nil)
-
 
 (require 'helm-config)
 ;;(global-company-mode)

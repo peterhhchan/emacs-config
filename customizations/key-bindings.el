@@ -2,10 +2,10 @@
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-<f3>"))
 (global-unset-key (kbd "C-S-y"))
-
+;;(global-unset-key (kbd "C-`")) ;; unbind kill emacs
 
 ;; Hmm Do I need this one?
-(global-set-key (kbd "C-`") 'kill-emacs)
+;;(global-set-key (kbd "C-`") 'kill-emacs)
 
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<C-tab>") 'other-window)

@@ -1,4 +1,11 @@
-;; javascript / html
+;;; setup-js.el --- Initialization file for Emacs
+
+;;; Commentary:
+;; flyscript + checkdoc
+;; Javascript and HTML
+
+;;; Code:
+
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-hook 'js-mode-hook 'subword-mode)
 (add-hook 'html-mode-hook 'subword-mode)
@@ -20,3 +27,7 @@
             (setq coffee-cleanup-whitespace nil)))
 (custom-set-variables
  '(coffee-tab-width 2))
+
+(provide 'setup-js)
+
+;;; setup-js.el ends here

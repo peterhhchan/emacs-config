@@ -1,6 +1,4 @@
-;;;;
-;; Clojure
-;;;;
+;;; setup-clojure.el --- Clojure setup
 
 ;; Enable paredit for Clojure
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
@@ -14,9 +12,16 @@
 (setq company-idle-delay nil) ; never start completions automatically
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common) ; use M-TAB, a.k.a. C-M-i, as manual trigger
 
+(use-package cider)
+
+;; key bindings and code colorization for Clojure
+;; https://github.com/clojure-emacs/clojure-mode
+(use-package clojure-mode)
+
+(use-package clj-refactor)
 
 ;; A little more syntax highlighting
-(require 'clojure-mode-extra-font-locking)
+(use-package clojure-mode-extra-font-locking)
 
 (add-hook 'clojure-mode-hook
           (lambda ()
@@ -63,7 +68,7 @@
 
 ;; enable paredit in your REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
-
+(add-hook 'clojure-mode-hook 'enable-paredit-mode)
 
 ;; Use clojure mode for other extensions
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
@@ -101,3 +106,7 @@
 ;;(require 'helm-config)
 
 ;;(require 'clj-refactor)
+
+(provide 'setup-clojure)
+
+;;; setup-clojure.el ends here

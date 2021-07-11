@@ -21,15 +21,6 @@
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
 
-    ;; key bindings and code colorization for Clojure
-    ;; https://github.com/clojure-emacs/clojure-mode
-    clojure-mode
-
-    ;; extra syntax highlighting for clojure
-    clojure-mode-extra-font-locking
-
-    clj-refactor
-
     ;; integration with a Clojure REPL
     ;; https://github.com/clojure-emacs/cider
     cider
@@ -65,11 +56,14 @@
     ;; git integration
     magit
 
+    ;; use-package macro
+    ;; https://github.com/jwiegley/use-package
+    use-package
+
     ;;
     ;; Python stuff
     ;;
     elpy ;; add the elpy package
-
 ))
 
 (dolist (p my-packages)
@@ -79,6 +73,13 @@
   (exec-path-from-shell-initialize))
 
 
+;; https://github.com/raxod502/straight.el#integration-with-use-package
+;;Specifying :straight t is unnecessary if you set
+;;straight-use-package-by-default to a non-nil value. (Note that the
+;;variable use-package-always-ensure is associated with package.el,
+;;and you should not use it with straight.el.)
+
+(setq straight-use-package-by-default t)
 ;;;;
 ;; Customization
 ;;;;
@@ -113,6 +114,7 @@
 (load "setup-clojure.el")
 (load "setup-js.el")
 (load "setup-python.el")
+(load "setup-rust.el")
 
 ;; Key bindings
 (load "key-bindings.el")

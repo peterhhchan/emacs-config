@@ -105,10 +105,12 @@
 (load "editing.el")
 
 ;; Hard-to-categorize customizations
-(load "misc.el")
+(load "my-misc.el")
 
 ;; For editing lisps
 (load "elisp-editing.el")
+
+(load "seq-25.el")
 
 ;; Langauage-specific
 (load "setup-clojure.el")
@@ -118,9 +120,6 @@
 
 ;; Key bindings
 (load "key-bindings.el")
-
-;; Whitespace
-(load "whitespace.el")
 
 (load "setup-tramp.el")
 
@@ -144,5 +143,5 @@
  ;; If there is more than one, they won't work right.
  '(linum ((t (:foreground "olive drab")))))
 
-(require 'helm-config)
+
 ;;(global-company-mode)

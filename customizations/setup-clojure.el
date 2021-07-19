@@ -18,7 +18,7 @@
 ;; https://github.com/clojure-emacs/clojure-mode
 (use-package clojure-mode)
 
-(use-package clj-refactor)
+;;(use-package clj-refactor)
 
 ;; A little more syntax highlighting
 (use-package clojure-mode-extra-font-locking)
@@ -104,8 +104,6 @@
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)))
 
 ;;(require 'helm-config)
-
-;;(require 'clj-refactor)
 
 (provide 'setup-clojure)
 

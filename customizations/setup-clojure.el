@@ -1,52 +1,52 @@
 ;;; setup-clojure.el --- Clojure setup
 
-;; Enable paredit for Clojure
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
-
-;; This is useful for working with camel-case tokens, like names of
-;; Java classes (e.g. JavaClassName)
-(add-hook 'clojure-mode-hook 'subword-mode)
-
-(add-hook 'clojure-mode-hook 'company-mode-on)
-
-(setq company-idle-delay nil) ; never start completions automatically
-(global-set-key (kbd "TAB") #'company-indent-or-complete-common) ; use M-TAB, a.k.a. C-M-i, as manual trigger
 
 (use-package cider)
 
 ;; key bindings and code colorization for Clojure
 ;; https://github.com/clojure-emacs/clojure-mode
-(use-package clojure-mode)
+(use-package clojure-mode
+  :config
+  ;; Enable paredit for Clojure
+  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+
+  ;; This is useful for working with camel-case tokens, like names of
+  ;; Java classes (e.g. JavaClassName)
+  (add-hook 'clojure-mode-hook 'subword-mode)
+
+  (add-hook 'clojure-mode-hook 'company-mode-on)
+  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode 1)
+              (yas-minor-mode 1) ; for adding require/use/import statements
+              ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+              (cljr-add-keybindings-with-prefix "C-c C-m")))
+
+  ;; syntax hilighting for midje
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (setq inferior-lisp-program "lein repl")
+              (font-lock-add-keywords
+               nil
+               '(("(\\(facts?\\)"
+                  (1 font-lock-keyword-face))
+                 ("(\\(background?\\)"
+                  (1 font-lock-keyword-face))))
+              (define-clojure-indent (fact 1))
+              (define-clojure-indent (facts 1))))
+)
 
 
 ;; A little more syntax highlighting
 (use-package clojure-mode-extra-font-locking)
+(setq font-lock-maximum-size 1000)
+
 
 (use-package clj-refactor)
 
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (clj-refactor-mode 1)
-            (yas-minor-mode 1) ; for adding require/use/import statements
-            ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-            (cljr-add-keybindings-with-prefix "C-c C-m")))
 
-
-;; syntax hilighting for midje
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (setq inferior-lisp-program "lein repl")
-            (font-lock-add-keywords
-             nil
-             '(("(\\(facts?\\)"
-                (1 font-lock-keyword-face))
-               ("(\\(background?\\)"
-                (1 font-lock-keyword-face))))
-            (define-clojure-indent (fact 1))
-            (define-clojure-indent (facts 1))))
-
-
-(setq font-lock-maximum-size 1000)
 ;;;;
 ;; Cider
 ;;;;
@@ -69,7 +69,7 @@
 
 ;; enable paredit in your REPL
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
-(add-hook 'clojure-mode-hook 'enable-paredit-mode)
+
 
 ;; Use clojure mode for other extensions
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))

@@ -21,6 +21,8 @@
   :config (setq company-tooltip-align-annotations t)
           (setq company-minimum-prefix-length 1))
 
+(use-package dash)
+
 
 ;;https://emacs-lsp.github.io/lsp-mode/page/installation/
 ;; lsp-mode provides integration with rust-analyzer
@@ -32,16 +34,18 @@
   (lsp-eldoc-render-all t)
   (lsp-idle-delay 0.6)
   (lsp-rust-analyzer-server-display-inlay-hints t)
+
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-(use-package lsp-ui)
+;;(use-package lsp-ui)
 
 (use-package toml-mode)
 
 
 ;; https://robert.kra.hn/posts/2021-02-07_rust-with-emacs/
 (use-package rustic
+  :requires flycheck
   :ensure
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
@@ -60,6 +64,10 @@
 
   ;; comment to disable rustfmt on save
   (setq rustic-format-on-save t)
+
+  (add-hook 'rustic-mode-hook 'electric-pair-mode)
+  (add-hook 'rustic-mode-hook 'flycheck-mode)
+  (add-hook 'rustic-mode-hook 'paredit-mode)
   (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
 
 
@@ -74,9 +82,10 @@
 ;; (use-package cargo
 ;;   :hook (rust-mode . cargo-minor-mode))
 
-(use-package flycheck)
+;;(use-package flycheck)
 
 ;; (use-package flycheck-rust
+;; ;;  :requires flycheck
 ;;   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (provide 'setup-rust)

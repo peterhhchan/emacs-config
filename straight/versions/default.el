@@ -3,7 +3,6 @@
  ("cider" . "f46d4c1ceab8fbc2d8bccdcec111517a10520a60")
  ("clojure-mode" . "84ed16c5ddb6561620886485e20669d0c81f88a1")
  ("company-mode" . "4462e7d399c3d2e1ea1f5d018f4537f1f3d5acfc")
- ("dash.el" . "b92ab5a39b987e4fe69317b9d9fda452300baf20")
  ("elpy" . "c766feb5c34dd17b7afba480ae9e90a08d75012c")
  ("emacs-async" . "36a10151e70e956e2f766ed9e65f4a9cfc8479b2")
  ("emacs-memoize" . "51b075935ca7070f62fae1d69fe0ff7d8fa56fdd")

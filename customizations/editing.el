@@ -4,6 +4,10 @@
 ;; http://www.emacswiki.org/emacs/HippieExpand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+(setq company-idle-delay nil) ; never start completions automatically
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common) ; use M-TAB, a.k.a. C-M-i, as manual trigger
+
+
 ;; Lisp-friendly hippie expand
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev

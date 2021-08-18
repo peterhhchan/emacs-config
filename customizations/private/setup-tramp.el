@@ -1,3 +1,5 @@
+;;; setup-tramp.el --- python setup for emacas
+
 ;; tramp config
 (setq tramp-default-method "ssh")
 

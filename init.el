@@ -110,7 +110,7 @@
 ;; For editing lisps
 (load "elisp-editing.el")
 
-(load "seq-25.el")
+;;(load "seq-25.el")
 
 ;; Langauage-specific
 (load "setup-clojure.el")

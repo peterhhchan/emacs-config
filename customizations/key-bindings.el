@@ -2,14 +2,17 @@
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-<f3>"))
 (global-unset-key (kbd "C-S-y"))
-;;(global-unset-key (kbd "C-`")) ;; unbind kill emacs
+
 
 ;; Hmm Do I need this one?
-;;(global-set-key (kbd "C-`") 'kill-emacs)
+;;(global-unset-key (kbd "C-`")) ;; unbind kill emacs
 
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<C-tab>") 'other-window)
+(global-set-key (kbd "C-x <C-up>") 'other-window)
+(global-set-key (kbd "C-x <C-down>") 'other-window)
 (global-set-key (kbd "C-s") 'save-buffer)
+
 (global-set-key (kbd "C-S-<f3>") 'isearch-forward)
 
 (global-set-key (kbd "<C-iso-lefttab>") 'clojure-align)

@@ -17,12 +17,14 @@
 ;; https://www.reddit.com/r/rust/comments/a3da5g/my_entire_emacs_config_for_rust_in_fewer_than_20/
 
 (use-package company
-  :hook (prog-mode . company-mode)
+  :hook ((prog-mode . company-mode)
+         (rustic-mode . company-mode))
   :config (setq company-tooltip-align-annotations t)
-          (setq company-minimum-prefix-length 1))
+  (setq company-minimum-prefix-length 1))
 
 (use-package dash)
-
+(use-package flycheck)
+(use-package lsp-ui)
 
 ;;https://emacs-lsp.github.io/lsp-mode/page/installation/
 ;; lsp-mode provides integration with rust-analyzer
@@ -38,7 +40,7 @@
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-;;(use-package lsp-ui)
+
 
 (use-package toml-mode)
 

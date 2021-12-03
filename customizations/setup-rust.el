@@ -24,7 +24,7 @@
 
 (use-package dash)
 (use-package flycheck)
-(use-package lsp-ui)
+;;(use-package lsp-ui)
 
 ;;https://emacs-lsp.github.io/lsp-mode/page/installation/
 ;; lsp-mode provides integration with rust-analyzer
@@ -36,9 +36,11 @@
   (lsp-eldoc-render-all t)
   (lsp-idle-delay 0.6)
   (lsp-rust-analyzer-server-display-inlay-hints t)
-
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-eldoc-enable-hover nil)
+;;  :config
+;;  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  )
 
 
 

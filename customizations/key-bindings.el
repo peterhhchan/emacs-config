@@ -1,3 +1,6 @@
+;;; Package --- Personal Key Bindings
+
+;;; Code:
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-s"))
 (global-unset-key (kbd "C-S-<f3>"))
@@ -6,6 +9,7 @@
 
 ;; Hmm Do I need this one?
 ;;(global-unset-key (kbd "C-`")) ;; unbind kill emacs
+;;(global-unset-key (kbd "<C-TAB>")) ;; unbind kill emacs
 
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<C-tab>") 'other-window)
@@ -15,7 +19,6 @@
 
 (global-set-key (kbd "C-S-<f3>") 'isearch-forward)
 
-(global-set-key (kbd "<C-iso-lefttab>") 'clojure-align)
 
 (global-set-key (kbd "C-S-y") 'helm-show-kill-ring)
 ;;(global-set-key (kbd "C-)") 'paredit-forward-slurp-sexp)

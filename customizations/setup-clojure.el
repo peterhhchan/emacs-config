@@ -43,8 +43,8 @@
 (use-package clojure-mode-extra-font-locking)
 (setq font-lock-maximum-size 1000)
 
-
-(use-package clj-refactor)
+;; clj-refactor why you break everything always?
+;;(use-package clj-refactor)
 
 
 ;;;;

@@ -8,34 +8,34 @@
 (use-package clojure-mode
   :config
   ;; Enable paredit for Clojure
-  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+  ((add-hook 'clojure-mode-hook 'enable-paredit-mode)
 
-  ;; This is useful for working with camel-case tokens, like names of
-  ;; Java classes (e.g. JavaClassName)
-  (add-hook 'clojure-mode-hook 'subword-mode)
+   ;; This is useful for working with camel-case tokens, like names of
+   ;; Java classes (e.g. JavaClassName)
+   (add-hook 'clojure-mode-hook 'subword-mode)
 
-  (add-hook 'clojure-mode-hook 'company-mode-on)
-  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+   (add-hook 'clojure-mode-hook 'company-mode-on)
+   (add-hook 'clojure-mode-hook 'enable-paredit-mode)
 
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (clj-refactor-mode 1)
-              (yas-minor-mode 1) ; for adding require/use/import statements
-              ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-              (cljr-add-keybindings-with-prefix "C-c C-m")))
+   (add-hook 'clojure-mode-hook
+             (lambda ()
+               (clj-refactor-mode 1)
+               (yas-minor-mode 1) ; for adding require/use/import statements
+               ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+               (cljr-add-keybindings-with-prefix "C-c C-m")))
 
-  ;; syntax hilighting for midje
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (setq inferior-lisp-program "lein repl")
-              (font-lock-add-keywords
-               nil
-               '(("(\\(facts?\\)"
-                  (1 font-lock-keyword-face))
-                 ("(\\(background?\\)"
-                  (1 font-lock-keyword-face))))
-              (define-clojure-indent (fact 1))
-              (define-clojure-indent (facts 1))))
+   ;; syntax hilighting for midje
+   (add-hook 'clojure-mode-hook
+             (lambda ()
+               (setq inferior-lisp-program "lein repl")
+               (font-lock-add-keywords
+                nil
+                '(("(\\(facts?\\)"
+                   (1 font-lock-keyword-face))
+                  ("(\\(background?\\)"
+                   (1 font-lock-keyword-face))))
+               (define-clojure-indent (fact 1))
+               (define-clojure-indent (facts 1)))))
 )
 
 

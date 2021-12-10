@@ -2,6 +2,146 @@
 ;; Packages
 ;;;;
 
+(setq straight-use-package-by-default t)
+
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+
+(defvar my-packages
+  '(;; makes handling lisp expressions much, much easier
+    ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+    paredit
+
+    ;; integration with a Clojure REPL
+    ;; https://github.com/clojure-emacs/cider
+    cider
+
+    ;;
+    helm
+    helm-projectile
+
+    exec-path-from-shell
+
+    ;; allow ido usage in as many contexts as possible. see
+    ;; customizations/navigation.el line 23 for a description
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+
+(defvar my-packages
+  '(;; makes handling lisp expressions much, much easier
+    ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+    paredit
+
+    ;; integration with a Clojure REPL
+    ;; https://github.com/clojure-emacs/cider
+    cider
+
+    ;;
+    helm
+    helm-projectile
+
+    exec-path-from-shell
+
+    ;; allow ido usage in as many contexts as possible. see
+    ;; customizations/navigation.el line 23 for a description
+    ;; of ido
+    ido-completing-read+
+
+    ;; Enhances M-x to allow easier execution of commands. Provides
+    ;; a filterable list of possible commands in the minibuffer
+    ;; http://www.emacswiki.org/emacs/Smex
+    smex
+
+    ;; project navigation
+    projectile
+
+
+    ;; colorful parenthesis matching
+    rainbow-delimiters
+
+    ;; edit html tags like sexps
+    tagedit
+
+    unicode-fonts
+
+    ;; git integration
+    magit
+
+    ;; use-package macro
+    ;; https://github.com/jwiegley/use-package
+    use-package
+
+    ;;
+    ;; Python stuff
+    ;;
+    elpy ;; add the elpy package
+))
+
+(dolist (p my-packages)
+  (straight-use-package p))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+
+;; https://github.com/raxod502/straight.el#integration-with-use-package
+;;Specifying :straight t is unnecessary if you set
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+
+(defvar my-packages
+  '(;; makes handling lisp expressions much, much easier
+    ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+    paredit
+
+    ;; integration with a Clojure REPL
+    ;; https://github.com/clojure-emacs/cider
+    cider
+
+    ;;
+    helm
+    helm-projectile
+
+    exec-path-from-shell
+
+    ;; allow ido usage in as many contexts as possible. see
+    ;; customizations/navigation.el line 23 for a description
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -110,7 +250,7 @@
 ;; For editing lisps
 (load "elisp-editing.el")
 
-(load "seq-25.el")
+;;(load "seq-25.el")
 
 ;; Langauage-specific
 (load "setup-clojure.el")

@@ -117,6 +117,7 @@
 (load "setup-js.el")
 (load "setup-python.el")
 (load "setup-rust.el")
+(load "setup-sql.el")
 
 ;; Key bindings
 (load "key-bindings.el")
@@ -133,8 +134,17 @@
  ;; If there is more than one, they won't work right.
  '(cider-print-fn 'pr)
  '(coffee-tab-width 2)
+ '(elpy-rpc-python-command "python3")
+ '(elpy-shell-starting-directory 'current-directory)
  '(package-selected-packages
-   '(py-autopep8 flycheck clj-refactor exec-path-from-shell elpy multiple-cursors magit tagedit rainbow-delimiters projectile smex helm clojure-mode-extra-font-locking clojure-mode paredit)))
+   '(py-autopep8 flycheck clj-refactor exec-path-from-shell elpy multiple-cursors magit tagedit rainbow-delimiters projectile smex helm clojure-mode-extra-font-locking clojure-mode paredit))
+ '(safe-local-variable-values
+   '((cider-test-infer-test-ns lambda
+                               (ns)
+                               (if
+                                   (string-match "^[^.]+.test" ns)
+                                   ns
+                                 (replace-regexp-in-string "^\\([^.]+\\)." "\\1.test." ns))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

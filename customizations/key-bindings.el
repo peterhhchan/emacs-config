@@ -9,6 +9,8 @@
 
 ;; Hmm Do I need this one?
 ;;(global-unset-key (kbd "C-`")) ;; unbind kill emacs
+(global-unset-key (kbd "C--"))
+(global-set-key (kbd "C--") 'pop-global-mark)
 
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "<C-tab>") 'other-window)

@@ -1,5 +1,10 @@
 ;;; setup-clojure.el --- Clojure setup
 
+;;;
+
+;; Mobot
+;;(setenv "JAVA_HOME" "/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home")
+(setenv "JAVA_HOME" "/opt/homebrew/opt/openjdk/bin/java")
 
 (use-package cider)
 

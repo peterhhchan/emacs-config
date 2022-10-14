@@ -7,8 +7,12 @@
 ;; Turn off the menu bar at the top of each frame because it's distracting
 (menu-bar-mode -1)
 
+(tool-bar-mode -1)
+
 ;; Show line numbers
 (global-linum-mode)
+
+(column-number-mode)
 
 ;; You can uncomment this to remove the graphical toolbar at the top. After
 ;; awhile, you won't need the toolbar.

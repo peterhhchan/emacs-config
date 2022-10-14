@@ -15,8 +15,8 @@
         elpy-rpc-python-command "python3"
         elpy-shell-echo-output nil
 
-        python-shell-interpreter "python3"
-        python-shell-interpreter-args "-i"
+;;        python-shell-interpreter "python3"
+;;W        python-shell-interpreter-args "-i"
 
 ;;        python-shell-interpreter "jupyter"
 ;;        python-shell-interpreter-args "console --simple-prompt"

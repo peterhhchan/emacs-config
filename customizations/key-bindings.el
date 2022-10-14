@@ -6,6 +6,8 @@
 (global-unset-key (kbd "C-S-<f3>"))
 (global-unset-key (kbd "C-S-y"))
 
+;; I hate you mac!
+(global-unset-key (kbd "s-x"))
 
 ;; Hmm Do I need this one?
 ;;(global-unset-key (kbd "C-`")) ;; unbind kill emacs
@@ -28,6 +30,12 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+;;(global-unset-key (kbd "C-x C-f"))
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+
+
 
 (defun ambrevar/flyspell-and-whitespace-mode ()
   "Toggle `flyspell-mode' and `whitespace-mode'."

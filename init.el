@@ -134,6 +134,7 @@
  ;; If there is more than one, they won't work right.
  '(cider-print-fn 'pr)
  '(coffee-tab-width 2)
+ '(ediff-split-window-function 'split-window-vertically)
  '(elpy-rpc-python-command "python3")
  '(elpy-shell-starting-directory 'current-directory)
  '(package-selected-packages

@@ -1,3 +1,5 @@
+(setq frame-inhibit-implied-resize t)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;;;;
 ;; Packages
 ;;;;
@@ -118,6 +120,7 @@
 (load "setup-python.el")
 (load "setup-rust.el")
 (load "setup-sql.el")
+(load "setup-go.el")
 
 ;; Key bindings
 (load "key-bindings.el")

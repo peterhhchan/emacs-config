@@ -10,7 +10,8 @@
 (tool-bar-mode -1)
 
 ;; Show line numbers
-(global-linum-mode)
+;;(global-linum-mode)
+(display-line-numbers-mode)
 
 (column-number-mode)
 
@@ -73,6 +74,6 @@
 (setq ring-bell-function 'ignore)
 
 ;; https://github.com/rolandwalker/unicode-fonts/issues/16
-(require 'persistent-soft)
-(setq inhibit-compacting-font-caches t)
-(unicode-fonts-setup)
+;;(require 'persistent-soft)
+;;(setq inhibit-compacting-font-caches t)
+;;(unicode-fonts-setup)

@@ -1,3 +1,4 @@
+(defvar native-comp-deferred-compilation-deny-list nil)
 (setq frame-inhibit-implied-resize t)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;;;;
@@ -115,7 +116,7 @@
 ;;(load "seq-25.el")
 
 ;; Langauage-specific
-(load "setup-clojure.el")
+;;(load "setup-clojure.el")
 (load "setup-js.el")
 (load "setup-python.el")
 (load "setup-rust.el")
@@ -125,7 +126,7 @@
 ;; Key bindings
 (load "key-bindings.el")
 
-(load "setup-tramp.el")
+;;(load "setup-tramp.el")
 
 
 (add-hook 'before-save-hook 'whitespace-cleanup)

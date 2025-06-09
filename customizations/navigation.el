@@ -57,11 +57,21 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
-(use-package helm
-:straight t
-)
 
-;;(setq-default projectile--mode-line projectile-mode-line-prefix)
+(use-package helm
+  :ensure t
+  :init
+  ;; Add any setup that needs to happen before Helm is loaded
+  (setq helm-candidate-number-limit 200)
+  :config
+  ;; This code runs after Helm is loaded
+  (helm-mode 1)
+  :bind (
+         ("M-x" . helm-M-x)
+         ("C-x C-f" . helm-find-files)
+         ("C-x b" . helm-mini)
+         ("C-x b" . helm-buffers-list)))
+
 (use-package projectile
   :ensure t
   :init
@@ -69,7 +79,11 @@
   :bind (:map projectile-mode-map
               ("s-p" . projectile-command-map)
               ("C-c p" . projectile-command-map)))
+(setq-default projectile--mode-line projectile-mode-line-prefix)
+(use-package helm-projectile
+  :ensure t)
+
 ;; projectile everywhere!
-;;(projectile-global-mode)
-;;(setq projectile-completion-system 'helm)
-;;(helm-projectile-on)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)

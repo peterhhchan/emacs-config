@@ -10,13 +10,13 @@
   :init
   (elpy-enable)
   :config
-  (setq python-shell-interpreter "ipython"
-        python-shell-interpreter-args "-i --simple-prompt"
+  (setq
+;; python-shell-interpreter "ipython"
+;;        python-shell-interpreter-args "-i --simple-prompt"
         elpy-rpc-python-command "python3"
         elpy-shell-echo-output nil
-
-;;        python-shell-interpreter "python3"
-;;W        python-shell-interpreter-args "-i"
+        python-shell-interpreter "python3"
+        python-shell-interpreter-args "-i"
 
 ;;        python-shell-interpreter "jupyter"
 ;;        python-shell-interpreter-args "console --simple-prompt"
@@ -38,7 +38,19 @@
 
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
-(use-package pyvenv)
+(use-package pyvenv
+  :ensure t
+  :config
+  (pyvenv-mode t)
+
+  ;; Set correct Python interpreter
+  (setq pyvenv-post-activate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python3")))))
+  (setq pyvenv-post-deactivate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter "python3")))))
+
 
 (use-package blacken
   :ensure t

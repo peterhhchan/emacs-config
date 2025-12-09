@@ -6,7 +6,7 @@
 auto-save-list
 backups
 cider-history
-ido.last
+ido.last*
 init.el.save
 network-security.data
 places
@@ -14,6 +14,8 @@ projectile-bookmarks.eld
 projectile.cache
 tramp
 
+eln-cache/*
+transient/*
 elpa/*
 straight/*
 var/*

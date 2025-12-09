@@ -1,17 +1,22 @@
-(setq frame-inhibit-implied-resize t)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;;;;
 ;; Packages
 ;;;;
 
+(defvar native-comp-deferred-compilation-deny-list nil)
+(setq frame-inhibit-implied-resize t)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -23,14 +28,7 @@
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
 
-    ;; integration with a Clojure REPL
-    ;; https://github.com/clojure-emacs/cider
-    cider
-
-    ;;
-    helm
-    helm-projectile
-
+    ;;https://github.com/purcell/exec-path-from-shell
     exec-path-from-shell
 
     ;; allow ido usage in as many contexts as possible. see
@@ -42,10 +40,6 @@
     ;; a filterable list of possible commands in the minibuffer
     ;; http://www.emacswiki.org/emacs/Smex
     smex
-
-    ;; project navigation
-    projectile
-
 
     ;; colorful parenthesis matching
     rainbow-delimiters
@@ -112,8 +106,6 @@
 ;; For editing lisps
 (load "elisp-editing.el")
 
-;;(load "seq-25.el")
-
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
@@ -125,8 +117,8 @@
 ;; Key bindings
 (load "key-bindings.el")
 
-(load "setup-tramp.el")
-
+;;(load "setup-tramp.el")
+;; (global-company-mode)
 
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
@@ -156,6 +148,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(linum ((t (:foreground "olive drab")))))
-
-
-;;(global-company-mode)

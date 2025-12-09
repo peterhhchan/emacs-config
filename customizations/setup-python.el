@@ -36,8 +36,6 @@
 
 (use-package py-autopep8)
 
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
 (use-package pyvenv
   :ensure t
   :config
@@ -50,7 +48,6 @@
   (setq pyvenv-post-deactivate-hooks
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
-
 
 (use-package blacken
   :ensure t

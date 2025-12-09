@@ -1,12 +1,8 @@
+;;;
 ;;; setup-clojure.el --- Clojure setup
-
 ;;;
 
-;; Mobot
-;;(setenv "JAVA_HOME" "/Library/Java/JavaVirtualMachines/adoptopenjdk-15.jdk/Contents/Home")
-(setenv "JAVA_HOME" "/opt/homebrew/opt/openjdk/bin/java")
-
-(use-package cider)
+;;(use-package cider)
 
 ;; key bindings and code colorization for Clojure
 ;; https://github.com/clojure-emacs/clojure-mode

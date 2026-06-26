@@ -1,5 +1,5 @@
 ;;;;
-;; Packages
+;;;; init.el
 ;;;;
 
 (defvar native-comp-deferred-compilation-deny-list nil)
@@ -16,7 +16,7 @@
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+        "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -130,17 +130,19 @@
  '(cider-print-fn 'pr)
  '(coffee-tab-width 2)
  '(ediff-split-window-function 'split-window-vertically)
- '(elpy-rpc-python-command "python3")
+ '(elpy-rpc-python-command "python")
  '(elpy-shell-starting-directory 'current-directory)
  '(package-selected-packages
-   '(py-autopep8 flycheck clj-refactor exec-path-from-shell elpy multiple-cursors magit tagedit rainbow-delimiters projectile smex helm clojure-mode-extra-font-locking clojure-mode paredit))
+   '(py-autopep8 flycheck clj-refactor exec-path-from-shell elpy
+                 multiple-cursors magit tagedit rainbow-delimiters
+                 projectile smex helm clojure-mode-extra-font-locking
+                 clojure-mode paredit))
+ '(safe-local-variable-directories '("/Users/peterchan/Projects/aoc/"))
  '(safe-local-variable-values
-   '((cider-test-infer-test-ns lambda
-                               (ns)
-                               (if
-                                   (string-match "^[^.]+.test" ns)
-                                   ns
-                                 (replace-regexp-in-string "^\\([^.]+\\)." "\\1.test." ns))))))
+   '((cider-test-infer-test-ns lambda (ns)
+                               (if (string-match "^[^.]+.test" ns) ns
+                                 (replace-regexp-in-string
+                                  "^\\([^.]+\\)." "\\1.test." ns))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

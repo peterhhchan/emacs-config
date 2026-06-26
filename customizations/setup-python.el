@@ -11,23 +11,15 @@
   (elpy-enable)
   :config
   (setq
-;; python-shell-interpreter "ipython"
-;;        python-shell-interpreter-args "-i --simple-prompt"
-        elpy-rpc-python-command "python3"
-        elpy-shell-echo-output nil
-        python-shell-interpreter "python3"
-        python-shell-interpreter-args "-i"
-
-;;        python-shell-interpreter "jupyter"
-;;        python-shell-interpreter-args "console --simple-prompt"
-;        python-shell-prompt-detect-failure-warning nil
+   elpy-rpc-python-command "python"
+   elpy-shell-echo-output nil
+   python-shell-interpreter "python"
+   python-shell-interpreter-args "-i"
+   elpy-rpc-virtualenv-path  'default
         ))
 
-(use-package jupyter)
+;;(use-package jupyter)
 
-;; Clean this up
-(add-to-list 'python-shell-completion-native-disabled-interpreters
-             "jupyter")
 
 (use-package flycheck
   :init
@@ -36,33 +28,34 @@
 
 (use-package py-autopep8)
 
-(use-package pyvenv
-  :ensure t
-  :config
-  (pyvenv-mode t)
+;; (use-package pyvenv
+;;   :ensure t
+;;   :config
+;;   (pyvenv-mode t)
 
-  ;; Set correct Python interpreter
-  (setq pyvenv-post-activate-hooks
-        (list (lambda ()
-                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python3")))))
-  (setq pyvenv-post-deactivate-hooks
-        (list (lambda ()
-                (setq python-shell-interpreter "python3")))))
+;;   ;; Set correct Python interpreter
+;;   (setq pyvenv-post-activate-hooks
+;;         (list (lambda ()
+;;                 (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python")))))
+;;   (setq pyvenv-post-deactivate-hooks
+;;         (list (lambda ()
+;;                 (setq python-shell-interpreter "python")))))
 
 (use-package blacken
   :ensure t
   :diminish)
+
+(use-package smartparens
+  :ensure t
+  :config
+  (require 'smartparens-config)
+  (add-hook 'python-mode-hook #'smartparens-mode))
 
 (defun my/python-mode-hook ()
   (blacken-mode)
   (aggressive-indent-mode)
   (diminish 'flymake-mode))
 
-;;(pyvenv-activate "~/anaconda3/envs/machine_learning")
-
-;; Point elpy to the conda environments
-;;(setenv "WORKON_HOME" "~/anaconda3/envs")
-;;(pyvenv-mode 1)
 
 (provide 'setup-python)
 

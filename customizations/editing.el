@@ -47,6 +47,8 @@
                                                "backups"))))
 (setq auto-save-default nil)
 
+(desktop-save-mode 1)
+(setq desktop-save t)
 
 ;; comments
 (defun toggle-comment-on-line ()

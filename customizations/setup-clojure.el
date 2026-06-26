@@ -81,6 +81,36 @@
 
 ;; key bindings
 ;; these help me out with the way I usually develop web apps
+(defun sort-current-form ()
+  "Sort the sexps inside the form the cursor is currently in.
+   Works on any vector [...] or list (...) form."
+  (interactive)
+  (save-excursion
+    ;; Move up and out to the enclosing form
+    (up-list)
+    (let* ((end (1- (point)))
+           (start (progn
+                    (backward-sexp)
+                    (1+ (point))))
+           (indent (current-column))
+           ;; Collect each top-level sexp inside the form
+           (sexps (let (result)
+                    (goto-char start)
+                    (while (< (point) end)
+                      (skip-chars-forward " \t\n")
+                      (when (< (point) end)
+                        (let ((sexp-start (point)))
+                          (forward-sexp)
+                          (push (buffer-substring-no-properties sexp-start (point))
+                                result))))
+                    (nreverse result)))
+           (sorted (sort sexps (lambda (a b)
+                                 (string< (downcase a) (downcase b)))))
+           (sep (concat "\n" (make-string indent ?\s))))
+      (delete-region start end)
+      (goto-char start)
+      (insert sep (mapconcat #'identity sorted sep) "\n"))))
+
 (defun cider-start-http-server ()
   (interactive)
   (cider-load-current-buffer)
